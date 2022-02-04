@@ -5,10 +5,14 @@ import hogs from "../porkers_data";
 
 function App() {
   const [isGreased, setIsGreased] = useState(false);
+  const [sortBy, setSortBy] = useState("none");
 
   function toggleSetIsGreased(e) {
     setIsGreased(e.target.checked);
-    console.log(isGreased);
+  }
+
+  function chooseSetSortBy(e) {
+    setSortBy(e.target.value);
   }
 
   return (
@@ -20,6 +24,15 @@ function App() {
         type="checkbox"
         checked={isGreased}
       />
+      <div>
+        <span>Sort in ascending order by: </span>
+
+        <select onChange={chooseSetSortBy}>
+          <option value="name">Name</option>
+          <option value="weight">Weight</option>
+        </select>
+      </div>
+
       <HogList isGreased={isGreased} hogs={hogs} />
     </div>
   );
